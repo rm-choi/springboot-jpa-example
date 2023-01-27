@@ -7,6 +7,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/jpa")
@@ -27,11 +29,88 @@ public class BasicController {
         return basicService.getBasicByCategoryNot(category, pageable);
     }
 
-    @GetMapping("/basics/category/null")
-    public Page<BasicModel> getBasicByCategoryIsNull(@PageableDefault(size = 20, sort = "id",
+    @GetMapping("/basics/contents/null")
+    public Page<BasicModel> getBasicByContentsIsNull(@PageableDefault(size = 20, sort = "id",
                                                      direction = Sort.Direction.DESC)
                                                      Pageable pageable) {
-        return basicService.getBasicByCategoryIsNull(pageable);
+        return basicService.getBasicByContentsIsNull(pageable);
+    }
+
+    @GetMapping("/basics/between")
+    public Page<BasicModel> getBasicByIdBetween(
+            @RequestParam("startId") long startId,
+            @RequestParam("endId") long endId,
+            @PageableDefault(size = 20, sort = "id",
+                    direction = Sort.Direction.DESC) Pageable pageable) {
+        return basicService.getBasicByIdBetween(startId, endId, pageable);
+    }
+
+    @GetMapping("/basics/lessThan")
+    public Page<BasicModel> getBasicByIdLessThan(
+            @RequestParam("endId") long endId,
+            @PageableDefault(size = 20, sort = "id",
+                    direction = Sort.Direction.DESC) Pageable pageable) {
+        return basicService.getBasicByIdLessThan(endId, pageable);
+    }
+
+    @GetMapping("/basics/lessThanEq")
+    public Page<BasicModel> getBasicByIdLessThanEq(
+            @RequestParam("endId") long endId,
+            @PageableDefault(size = 20, sort = "id",
+                    direction = Sort.Direction.DESC) Pageable pageable) {
+        return basicService.getBasicByIdLessThanEq(endId, pageable);
+    }
+
+    @GetMapping("/basics/greatThan")
+    public Page<BasicModel> getBasicByIdGreatThan(
+            @RequestParam("startId") long startId,
+            @PageableDefault(size = 20, sort = "id",
+                    direction = Sort.Direction.DESC) Pageable pageable) {
+        return basicService.getBasicByIdGreatThan(startId, pageable);
+    }
+
+    @GetMapping("/basics/greatThanEq")
+    public Page<BasicModel> getBasicByIdGreatThanEq(
+            @RequestParam("startId") long startId,
+            @PageableDefault(size = 20, sort = "id",
+                    direction = Sort.Direction.DESC) Pageable pageable) {
+        return basicService.getBasicByIdGreatThanEq(startId, pageable);
+    }
+
+    @GetMapping("/basics/date")
+    public Page<BasicModel> getBasicByDate(
+            @RequestParam("date") long date,
+            @RequestParam("type") int type,
+            @PageableDefault(size = 20, sort = "id",
+                    direction = Sort.Direction.DESC) Pageable pageable) {
+        return basicService.getBasicByDate(date, type, pageable);
+    }
+
+
+
+    @GetMapping("/basics/flag")
+    public Page<BasicModel> getBasicByFlag(
+            @RequestParam("flag") boolean flag,
+            @PageableDefault(size = 20, sort = "id",
+                   direction = Sort.Direction.DESC) Pageable pageable) {
+        return basicService.getBasicByFlag(flag, pageable);
+    }
+
+    @GetMapping("/basics/like")
+    public Page<BasicModel> getBasicByTitleLike(
+            @RequestParam("title") String title,
+            @RequestParam("type") int type,
+            @PageableDefault(size = 20, sort = "id",
+                    direction = Sort.Direction.DESC) Pageable pageable) {
+        return basicService.getBasicByTitleLike(title,type, pageable);
+    }
+
+    @GetMapping("/basics/in")
+    public Page<BasicModel> getBasicByCategoryList(
+            @RequestParam("category") List<String> categoryList,
+            @PageableDefault(size = 20, sort = "id",
+                   direction = Sort.Direction.DESC) Pageable pageable) {
+        return basicService.getBasicByCategoryList(categoryList, pageable);
     }
 
 

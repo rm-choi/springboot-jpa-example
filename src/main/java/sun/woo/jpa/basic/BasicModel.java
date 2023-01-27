@@ -5,12 +5,20 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
+import java.util.Date;
 
 @Entity
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@DynamicInsert
+@DynamicUpdate
 @Table(name="jpa_basic")
 public class BasicModel {
 
@@ -24,8 +32,15 @@ public class BasicModel {
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false)
+    @Column
     private String contents;
+
+    @ColumnDefault("1")
+    private Boolean flag;
+
+    @Column(name="insert_dt", nullable = false, updatable = false)
+    @CreationTimestamp
+    private Date date;
 
 
 
