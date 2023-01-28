@@ -36,6 +36,42 @@ public class BasicController {
         return basicService.getBasicByContentsIsNull(pageable);
     }
 
+    @GetMapping("/basics/ignoreCase")
+    public Page<BasicModel> getBasicByIgnoreCase(
+            @RequestParam("title") String title,
+            @PageableDefault(size = 20, sort = "id",
+                    direction = Sort.Direction.DESC) Pageable pageable) {
+        return basicService.getBasicByIgnoreCase(title, pageable);
+    }
+
+    @GetMapping("/basics/ignoreCaseAll")
+    public Page<BasicModel> getBasicByIgnoreCaseAll(
+            @RequestParam("title") String title,
+            @RequestParam("contents") String contents,
+            @PageableDefault(size = 20, sort = "id",
+                    direction = Sort.Direction.DESC) Pageable pageable) {
+        return basicService.getBasicByIgnoreCaseAll(title,contents, pageable);
+    }
+
+    @GetMapping("/basics/and")
+    public Page<BasicModel> getBasicByCategoryAndTitle(
+            @RequestParam("category") String category,
+            @RequestParam("title") String title,
+            @PageableDefault(size = 20, sort = "id",
+                    direction = Sort.Direction.DESC) Pageable pageable) {
+        return basicService.getBasicByCategoryAndTitle(category, title, pageable);
+    }
+
+    @GetMapping("/basics/or")
+    public Page<BasicModel> getBasicByCategoryOrTitle(
+            @RequestParam("category") String category,
+            @RequestParam("title") String title,
+            @PageableDefault(size = 20, sort = "id",
+                    direction = Sort.Direction.DESC) Pageable pageable) {
+        return basicService.getBasicByCategoryOrTitle(category,title, pageable);
+    }
+
+
     @GetMapping("/basics/between")
     public Page<BasicModel> getBasicByIdBetween(
             @RequestParam("startId") long startId,

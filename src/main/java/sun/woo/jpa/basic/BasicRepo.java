@@ -14,8 +14,8 @@ public interface BasicRepo extends JpaRepository<BasicModel, Long> {
 
     Page<BasicModel> findByContentsIsNull(Pageable pageable);
 
-    Page<BasicModel> findByCategoryIgnoreCase(String category, Pageable pageable);
-    Page<BasicModel> findByCategoryAndTitleAllIgnoreCase(String category, String title, Pageable pageable);
+    Page<BasicModel> findByTitleIgnoreCase(String title, Pageable pageable);
+    Page<BasicModel> findByTitleAndContentsAllIgnoreCase(String title, String contents, Pageable pageable);
 
     Page<BasicModel> findByCategoryAndTitle(String category, String title, Pageable pageable);
     Page<BasicModel> findByCategoryOrTitle(String category, String title, Pageable pageable);

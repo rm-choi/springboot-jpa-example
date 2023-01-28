@@ -27,6 +27,22 @@ public class BasicService {
         return basicRepo.findByContentsIsNull(pageable);
     }
 
+    public Page<BasicModel> getBasicByIgnoreCase(String title, Pageable pageable) {
+        return basicRepo.findByTitleIgnoreCase(title, pageable);
+    }
+
+    public Page<BasicModel> getBasicByIgnoreCaseAll(String title, String contents, Pageable pageable) {
+        return basicRepo.findByTitleAndContentsAllIgnoreCase(title, contents, pageable);
+    }
+
+    public Page<BasicModel> getBasicByCategoryAndTitle(String category, String title, Pageable pageable) {
+        return basicRepo.findByCategoryAndTitle(category, title, pageable);
+    }
+
+    public Page<BasicModel> getBasicByCategoryOrTitle(String category, String title, Pageable pageable) {
+        return basicRepo.findByCategoryOrTitle(category, title, pageable);
+    }
+
     public Page<BasicModel> getBasicByIdBetween(long startId, long endId, Pageable pageable) {
         return basicRepo.findByIdBetween(startId, endId, pageable);
     }
