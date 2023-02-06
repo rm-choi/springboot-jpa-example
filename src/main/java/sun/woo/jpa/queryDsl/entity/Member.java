@@ -22,7 +22,10 @@ public class Member {
     @Column(name = "member_id")
     private Long id;
 
-    @Column(name = "member_name")
+    //name : Field와 매핑할 테이블의 Column 이름
+    //Insertable / updatable : 등록 / 변경 가능 여부
+    //Insertable / updatable : 등록 / 변경 가능 여부
+    @Column(name = "member_name", nullable = false)
     private String memberName;
 
     private int age;
@@ -30,5 +33,6 @@ public class Member {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id")
     private Team team;
+
 
 }

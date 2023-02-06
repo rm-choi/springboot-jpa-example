@@ -33,9 +33,9 @@ public class MemberRepoCustomImpl implements MemberRepoCustom {
                         team.teamName.as("teamName")
                 ))
                 .from(member)
-                .leftJoin(member.team, team)
+                .innerJoin(member.team, team)
                 .where(
-                        memberNameEq(condition.getUserName()),
+                        memberNameEq(condition.getMemberName()),
                         teamNameEq(condition.getTeamName())
                 )
                 .fetch();

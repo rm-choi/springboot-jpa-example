@@ -28,11 +28,6 @@ public class Team {
     @Column(name = "team_name")
     private String teamName;
 
-    @OneToMany(mappedBy = "team")
-    List<Member> members = new ArrayList<>();
 
-    @OneToOne
-    @JoinColumn(name = "member_id")
-    Member leader;
 
 }
